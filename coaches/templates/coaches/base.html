@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header_container">
+            <div class="upper_header">
+                <div class="grizzly">GRIZZLY</div>
+                <img src="/pictures/grizzly_logo.png" alt="grizzly_logo" class="logo">
+                <div class="grizzly">ACADEMY</div>
+            </div>
+            <div class="red_line">
+                <div class="nav container">
+                    <div class="menu_button"><a href="{% url 'groups' %}">Группы</a></div>
+                    <div class="menu_button"><a href="#">Тренерская</a></div>
+                    <div class="menu_button"><a href="#">Профиль</a></div>
+                    <div class="menu_button"><a href="#">Выйти</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+        <div class="commercial_block">
+            <div class="commercial">
+                <p class="best_price">Лучшая цена</p>
+                <img class="goods" src="/pictures/ufc-gloves.png" alt="rash-guard">
+                <p class="commercial_title">Перчатки ММА</p>
+                <p class="commercial_price">1000 грн.</p>
+                <button class="purchase">Купить</button>
+<!--                <a href="#"><button class="purchase">Купить</button></a>-->
+            </div>
+            <div class="commercial"></div>
+            <div class="commercial"></div>
+            <div class="commercial"></div>
+        </div>
+    </main>
+
+
+
+    <footer>
+        <div class="footer_black header_container">
+                <div class="footer_black_inner container">
+                    <div class="black_flang">
+                        <a href="#" class="black_link">Главная</a>
+                    </div>
+
+                    <div class="black_right_2">
+                        <img class="bot_logo" src="/pictures/grizzly_logo_white.png" alt="epam">
+                    </div>
+
+                    <div class="black_flang">
+                        <a href="#" class="black_link">Выйти</a>
+                    </div>
+                </div>
+        </div>
+    </footer>
+</body>
+</html>

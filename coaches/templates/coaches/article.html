@@ -1,0 +1,14 @@
+{% extends 'coaches/base.html' %}
+
+{% block title %}
+    {% if page_title %}
+        {{ page_title }} - Grizzly Academy
+    {% else %}
+        Grizzly Academy
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    {{ post.title }}
+    {{ post.content }}
+{% endblock content %}

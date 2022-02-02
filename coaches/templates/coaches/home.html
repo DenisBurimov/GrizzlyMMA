@@ -1,0 +1,23 @@
+{% extends 'coaches/base.html' %}
+
+{% block title %}
+    {% if page_title %}
+        {{ page_title }} - Grizzly Academy
+    {% else %}
+        Grizzly Academy
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    {% for post in posts %}
+        <a href="{{ post.get_absolute_url }}" class="article_link">
+            <img class="home_page_image" src="pictures/default.jpg" alt="MMA">
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.author }}</p>
+            <small>{{ post.date_posted }}</small>
+            <br>
+            <br>
+            <p class="article_text">{{ post.content|make_list|slice:'0:300'|join:'' }} ...</p>
+        </a>
+    {% endfor %}
+{% endblock content %}
