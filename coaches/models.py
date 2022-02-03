@@ -5,10 +5,11 @@ from django.urls import reverse
 
 class Post(models.Model):
     slug = models.SlugField(default="default_slug")
+    picture = models.ImageField(upload_to="articles/", default="default.jpg")
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})

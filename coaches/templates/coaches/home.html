@@ -11,7 +11,7 @@
 {% block content %}
     {% for post in posts %}
         <a href="{{ post.get_absolute_url }}" class="article_link">
-            <img class="home_page_image" src="pictures/default.jpg" alt="MMA">
+            <img class="home_page_image" src="{{ post.picture.url }}" alt="MMA">
             <h1>{{ post.title }}</h1>
             <p>{{ post.author }}</p>
             <small>{{ post.date_posted }}</small>

@@ -9,6 +9,8 @@
 {% endblock title %}
 
 {% block content %}
-    {{ post.title }}
-    {{ post.content }}
+    <img src="{{ post.picture.url }}" alt="grizzly mma article" class="home_page_image">
+    <p>{{ post.title }}</p>
+    <small>{{ post.date_posted }}</small>
+    <pre>{{ post.content }}</pre>
 {% endblock content %}
