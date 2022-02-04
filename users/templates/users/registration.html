@@ -6,15 +6,14 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Join Today</legend>
-            {{ form.as_p }}
+            {{ r_form.as_p }}
+            {{ p_form.as_p }}
 <!--            {% for field in form %}-->
 <!--                <p>{{ field.label }}</p>-->
 <!--                <div>{{ field }}</div>-->
 <!--                <div>{{ field.errors }}</div>-->
 <!--            {% endfor %}-->
         </fieldset>
-        {{ form.title.label }}
-                {{ form.title }}
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Sign Up</button>
         </div>
