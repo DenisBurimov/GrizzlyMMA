@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegistrationForm, UserProfileForm
+from .forms import UserRegistrationForm, UserProfileForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 
 def registration(request):
@@ -21,7 +21,7 @@ def registration(request):
         p_form = UserProfileForm()
 
     data = {
-        'page_title' : 'About Page',
+        'page_title' : 'Registration Page',
         'r_form' : r_form,
         'p_form' : p_form,
     }
@@ -29,4 +29,24 @@ def registration(request):
     return render(request, 'users/registration.html', data)
 
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(data=request.FILES, instance=request.user.userprofile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f"Your account has been updated!")
+            return redirect('profile')
+        else:
+            messages.error(request, f"Something went wrong")
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.userprofile)
+
+    data = {
+        'page_title': 'Profile Page',
+        'u_form': u_form,
+        'p_form': p_form,
+    }
+
+    return render(request, 'users/profile.html', data)

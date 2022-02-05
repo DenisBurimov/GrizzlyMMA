@@ -24,6 +24,14 @@ def groups(request):
 
     return render(request, 'coaches/groups.html', data)
 
+def coaches(request):
+    data = {
+        'page_title' : 'Тренерская',
+        'testing_content' : "Тренерская",
+    }
+
+    return render(request, 'coaches/coaches.html', data)
+
 def post(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
 
