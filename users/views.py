@@ -29,19 +29,16 @@ def registration(request):
     return render(request, 'users/registration.html', data)
 
 def profile(request):
+    u_form = UserUpdateForm(instance=request.user)
+    p_form = ProfileUpdateForm(instance=request.user.userprofile)
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(data=request.FILES, instance=request.user.userprofile)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
             messages.success(request, f"Your account has been updated!")
             return redirect('profile')
-        else:
-            messages.error(request, f"Something went wrong")
-    else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.userprofile)
 
     data = {
         'page_title': 'Profile Page',
