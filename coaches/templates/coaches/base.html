@@ -20,32 +20,24 @@
             <div class="red_line">
                 <div class="nav container">
                     {% if user.is_authenticated %}
-                        {% if user.userprofile.status == "Manager" %}
-                            <div class="menu_button"><a href="{% url 'groups' %}">Группы</a></div>
-                            <div class="menu_button"><a href="{% url 'coaches' %}">Тренерская</a></div>
-                            <div class="menu_button"><a href="{% url 'profile' %}">Профиль</a></div>
+                                {% if user.student %}
+                                    <div class="menu_button"><a href="{% url 'home' %}">Главная</a></div>
+                                    <div class="menu_button"><a href="#">Магазин</a></div>
+                                    <div class="menu_button"><a href="{% url 'students_profile' %}">Профиль</a></div>
+                                {% elif user.parent %}
+                                    <div class="menu_button"><a href="{% url 'home' %}">Главная</a></div>
+                                    <div class="menu_button"><a href="#">Магазин</a></div>
+                                    <div class="menu_button"><a href="{% url 'parents_profile' %}">Профиль</a></div>
+                                {% elif user.manager.status == 'Manager' or user.manager.status == 'Coach' %}
+                                    <div class="menu_button"><a href="{% url 'coaches' %}">Тренерская</a></div>
+                                    <div class="menu_button"><a href="{% url 'groups' %}">Группы</a></div>
+                                    <div class="menu_button"><a href="{% url 'staffprofile' %}">Профиль</a></div>
+                                {% elif user.manager.status == 'Receptionist' %}
+                                    <div class="menu_button"><a href="{% url 'schedule' %}">Расписание</a></div>
+                                    <div class="menu_button"><a href="{% url 'staffops' %}">Админпанель</a></div>
+                                    <div class="menu_button"><a href="{% url 'staffprofile' %}">Профиль</a></div>
+                                {% endif %}
                             <div class="menu_button"><a href="{% url 'logout' %}">Выйти</a></div>
-                        {% elif user.userprofile.status == "Coach" %}
-                            <div class="menu_button"><a href="#">Группы</a></div>
-                            <div class="menu_button"><a href="#">Тренерская</a></div>
-                            <div class="menu_button"><a href="{% url 'profile' %}">Профиль</a></div>
-                            <div class="menu_button"><a href="{% url 'logout' %}">Выйти</a></div>
-                        {% elif user.userprofile.status == "Receptionist" %}
-                            <div class="menu_button"><a href="#">Расписание</a></div>
-                            <div class="menu_button"><a href="#">Группы</a></div>
-                            <div class="menu_button"><a href="{% url 'profile' %}">Профиль</a></div>
-                            <div class="menu_button"><a href="{% url 'logout' %}">Выйти</a></div>
-                        {% elif user.userprofile.status == "Student" or user.userprofile.status == "Parent" %}
-                            <div class="menu_button"><a href="{% url 'home' %}">Главная</a></div>
-                            <div class="menu_button"><a href="#">Магазин</a></div>
-                            <div class="menu_button"><a href="{% url 'profile' %}">Профиль</a></div>
-                            <div class="menu_button"><a href="{% url 'logout' %}">Выйти</a></div>
-                        {% else %}
-                            <div class="menu_button"><a href="{% url 'home' %}">Главная</a></div>
-                            <div class="menu_button"><a href="#">Магазин</a></div>
-                            <div class="menu_button"><a href="{% url 'profile' %}">Профиль</a></div>
-                            <div class="menu_button"><a href="{% url 'logout' %}">Выйти</a></div>
-                        {% endif %}
                     {% else %}
                         <div class="menu_button"><a href="{% url 'home' %}">Главная</a></div>
                         <div class="menu_button"><a href="#">Магазин</a></div>
@@ -65,7 +57,7 @@
                         {{ message }}
                     </div>
                 {% endfor %}
-          {% endif %}
+            {% endif %}
             {% block content %}
             {% endblock content %}
         </div>

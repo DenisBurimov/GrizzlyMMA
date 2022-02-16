@@ -1,0 +1,10 @@
+{% extends 'coaches/base.html' %}
+
+{% block content %}
+      <h1>Schedule Page</h1>
+
+      {% if user.manager %}
+            <p>Shedules</p>
+      {% endif %}
+
+{% endblock content %}

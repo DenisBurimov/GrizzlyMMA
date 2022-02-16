@@ -1,0 +1,21 @@
+{% extends 'coaches/base.html' %}
+
+{% block content %}
+    <h1>Registration Page Testing</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Зарегистрироваться, как родитель</legend>
+            {{ r_form.as_p }}
+            {{ p_form.as_p }}
+<!--            {% for field in form %}-->
+<!--                <p>{{ field.label }}</p>-->
+<!--                <div>{{ field }}</div>-->
+<!--                <div>{{ field.errors }}</div>-->
+<!--            {% endfor %}-->
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    </form>
+{% endblock content %}

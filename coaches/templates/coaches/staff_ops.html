@@ -1,0 +1,12 @@
+{% extends 'coaches/base.html' %}
+
+{% block content %}
+      <h1>Staff Ops</h1>
+
+      {% if user.manager %}
+            <a href="{% url 'groups' %}"><div class="menu_button">Все группы</div></a>
+            <a href="{% url 'staffregistration' %}"><div class="menu_button">Регистрация тренера</div></a>
+            <a href="{% url 'groupsadd' %}"><div class="menu_button">Добавление группы</div></a>
+      {% endif %}
+
+{% endblock content %}

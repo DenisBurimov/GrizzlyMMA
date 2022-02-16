@@ -1,0 +1,16 @@
+{% extends 'coaches/base.html' %}
+
+{% block content %}
+      <h1>Add A Group</h1>
+
+      {% if user.manager %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Add Group</button>
+            </div>
+        </form>
+      {% endif %}
+
+{% endblock content %}

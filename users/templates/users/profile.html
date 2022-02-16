@@ -1,17 +1,18 @@
 {% extends 'coaches/base.html' %}
 
 {% block content %}
-    <h1>Profile Page Testing</h1>
+    <h1>{{ page_title }}</h1>
     <p>Username: {{ user.username }}</p>
-    <p>Status: {{ user.userprofile.status }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
     <img src="{{ user.userprofile.picture.url }}" alt="users_photo" height="256" width="256">
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Profile Update Testing</legend>
-            {{ u_form }}
-            {{ p_form }}
+            {{ u_form.as_p }}
+            {{ p_form.as_p }}
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Sign Up</button>

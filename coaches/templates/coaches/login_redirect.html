@@ -1,0 +1,13 @@
+{% extends 'coaches/base.html' %}
+
+{% block content %}
+      <h1>Вы успешно выполнили вход</h1>
+      {% if user.student %}
+            <div class="menu_button"><a href="{% url 'students_profile' %}">Профиль</a></div>
+      {% elif user.parent %}
+            <div class="menu_button"><a href="{% url 'parents_profile' %}">Профиль</a></div>
+      {% elif user.manager %}
+            <div class="menu_button"><a href="{% url 'staffprofile' %}">Профиль</a></div>
+      {% endif %}
+
+{% endblock content %}
